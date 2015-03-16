@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <script src="./js/paper-full.min.js"></script>
+    <script src="./js/caveman-engine-v1.0.1.min.js"></script>
+    <script src="./js/PaperJsRenderComponent.js"></script>
+    <script src="./js/DropPuzzlePieceUtils.js"></script>
+    <script src="./js/DropPieceLayerComponent.js"></script>
+    <script src="./js/PuzzlePieceRenderComponent.js"></script>
+    <script src="./js/PuzzleSocketObject.js"></script>
+    <script src="./js/PuzzlePieceObject.js"></script>
+    <script src="./js/puzzle.js"></script>
+    <link rel="stylesheet" 
+          type="text/css" 
+          href="./css/puzzle.css">
+  </head>
+  <body>
+    <div>
+      <div class="column-div">
+        <h1>HTML5 Jigsaw Puzzle</h1>
+      </div>
+      <div class="column-div-right">
+        <div>
+          <label>Colums</label>
+          <label>Rows</label>
+          <label>Width</label>
+          <label>Height</label>
+          <label>Image</label>
+        </div>
+        <div>
+          <input id="columns"      
+                 type="text" 
+                 value="5" />
+          <input id="rows"         
+                 type="text" 
+                 value="5" />
+          <input id="canvasWidth"  
+                 type="text" 
+                 value="1000" 
+                 onkeyup="document.getElementById('canvas').width = this.value" />
+          <input id="canvasHeight" 
+                 type="text" 
+                 value="500"  
+                 onkeyup="document.getElementById('canvas').height = this.value" />
+          <input type="file" 
+                 id="imageUpload" 
+                 name="imageUpload" 
+                 accept="image/*" >
+      </div>
+    </div>
+    <div>
+      <canvas id="canvas" 
+              width="1000" 
+              height="500" 
+              class="game-canvas" />
+    </div>
+  </body>
+</html>

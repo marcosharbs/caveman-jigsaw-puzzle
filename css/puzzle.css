@@ -1,0 +1,29 @@
+.game-canvas{
+	border: 1px solid black;
+}
+
+.column-div{
+	display: inline-block;
+}
+
+.column-div-right{
+	display: inline-block;
+	margin-left: 50px;
+}
+
+label{
+	display: inline-block;
+	width: 80px;
+}
+
+input{
+	width: 80px;
+}
+
+canvas{
+	margin-top: 10px;
+}
+
+#imageUpload{
+	width: 115px;
+}
