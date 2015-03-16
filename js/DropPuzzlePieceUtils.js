@@ -24,16 +24,11 @@ DropPuzzlePieceUtils.prototype.onDropSockets = function(gameObject){
     this.testSocketColision(gameObject.bottomSocket);
 }
 
-DropPuzzlePieceUtils.prototype.onDropSocketsJoined = function(socket){
-    if(socket != null && socket.isJoined == true){
-        this.onDropSockets(socket.slave.parentPiece);
-    }
-}
-
 DropPuzzlePieceUtils.prototype.onDropGameObject = function(gameObject){
-    this.onDropSockets(gameObject);
-    this.onDropSocketsJoined(gameObject.leftSocket);
-    this.onDropSocketsJoined(gameObject.rightSocket);
-    this.onDropSocketsJoined(gameObject.topSocket);
-    this.onDropSocketsJoined(gameObject.bottomSocket);
+	for(var i=0; i<columns; i++){
+    	for(var j=0; j<rows; j++){
+    		var pieceObj = pieces[i][j];
+			this.onDropSockets(pieceObj);
+		}
+	}
 }

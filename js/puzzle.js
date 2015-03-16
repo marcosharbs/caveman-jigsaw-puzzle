@@ -20,13 +20,16 @@ var layer               = null;
 var originalRaster      = null;
 var socketsCount        = 0;
 var currentSocketsCount = 0;
+var pieces              = null;
+var colums              = 0;
+var rows                = 0;
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
 function createPiecesArray(columns, rows, pieceWidth, pieceHeight) {
-    var pieces = new Array(columns);
+    pieces = new Array(columns);
 
     for(var i=0; i<columns; i++){
         var piecesAux = new Array(rows);
@@ -64,8 +67,8 @@ function createSockets(pieceObj, socket, otherPiece, otherSocket, hw1, hh1, hw2,
 }
 
 function createPieces(canvas, imgData){
-	var columns = document.getElementById(COLUMNS_ID).value;
-    var rows = document.getElementById(ROWS_ID).value;
+	columns = document.getElementById(COLUMNS_ID).value;
+    rows = document.getElementById(ROWS_ID).value;
 
     socketsCount = 0;
     currentSocketsCount = 0;
@@ -87,7 +90,7 @@ function createPieces(canvas, imgData){
     var pieceWidth = originalRaster.size.width / columns;
     var pieceHeight = originalRaster.size.height / rows;
 
-    var pieces = createPiecesArray(columns, rows, pieceWidth, pieceHeight);
+    pieces = createPiecesArray(columns, rows, pieceWidth, pieceHeight);
 
     var halfW = pieceWidth / 2;
     var halfH = pieceHeight / 2;
