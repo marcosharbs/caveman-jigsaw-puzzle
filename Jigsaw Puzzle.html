@@ -9,49 +9,67 @@
     <script src="./js/PuzzleSocketObject.js"></script>
     <script src="./js/PuzzlePieceObject.js"></script>
     <script src="./js/puzzle.js"></script>
-    <link rel="stylesheet" 
-          type="text/css" 
-          href="./css/puzzle.css">
+	<script src="./js/jquery-1.11.2.min.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap-dialog.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="./css/puzzle.css">-->
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-dialog.min.css">
   </head>
-  <body>
-    <div>
-      <div class="column-div">
-        <h1>HTML5 Jigsaw Puzzle</h1>
-      </div>
-      <div class="column-div-right">
-        <div>
-          <label>Colums</label>
-          <label>Rows</label>
-          <label>Width</label>
-          <label>Height</label>
-          <label>Image</label>
-        </div>
-        <div>
-          <input id="columns"      
-                 type="text" 
-                 value="5" />
-          <input id="rows"         
-                 type="text" 
-                 value="5" />
-          <input id="canvasWidth"  
-                 type="text" 
-                 value="1000" 
-                 onkeyup="document.getElementById('canvas').width = this.value" />
-          <input id="canvasHeight" 
-                 type="text" 
-                 value="500"  
-                 onkeyup="document.getElementById('canvas').height = this.value" />
-          <input type="file" 
-                 id="imageUpload" 
-                 name="imageUpload" 
-                 accept="image/*" >
-      </div>
-    </div>
-    <div>
-      <canvas id="canvas" 
-              width="100%" 
-              height="100%" 
-              class="game-canvas" />
-    </div>
+  <body style="margin-left: 15px; margin-right: 15px; margin-left: 25px;">
+	<div class="row" 
+	     style="background-color: rgb(250, 250, 250); border: 1px solid black; border-radius: 10px; margin-right: 1px; margin-bottom: 5px; margin-top: 5px;">
+		<div class="col-md-9">
+			<h1>Caveman Jigsaw Puzzle</h1>
+		</div>
+		<div class="col-md-3" style="text-align: left;">
+			<a href="http://www.linkedin.com/profile/view?id=373533298">
+				<label style="width: 100%; margin-top: 10px; color: black; cursor: pointer;">
+					Developed by Marcos Harbs
+				</label>
+			</a>
+			<a href="http://github.com/CavemanApps/caveman-game-engine">
+				<label style="width: 100%; color: black; cursor: pointer;">
+					Powered by Caveman Game Engine
+				</label>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3" style="border: 1px solid black; border-radius: 10px; min-height: 690px; background-color: rgb(250, 250, 250);">
+			<div style="border: 1px solid black; border-radius: 10px; padding: 5px; margin-top: 10px;">
+			<div class="form-group">
+				<label for="imageUpload">Image</label>
+				<input type="file" id="imageUpload" name="imageUpload" accept="image/*" class="form-control" >
+			</div>
+			<div class="form-group">
+				<label for="imageUpload">Level</label>
+				<select id="levelCombo" class="form-control">
+				  <option value="5-5">Easy</option>
+				  <option value="7-7">Medium</option>
+				  <option value="10-10">Hard</option>
+				  <option value="12-12">Insane</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input onclick="onPlayPuzzle();" type="button" class="btn btn-primary" style="width: 100%;" value="Play" />
+			</div>
+			</div>
+			<div class="form-group" style="border: 1px solid black; border-radius: 10px; padding: 5px; margin-top: 10px;">
+				<label>Steps to play:</label></br>
+				<label>1 - Choose an image.</label></br>
+				<label>2 - Select a level.</label></br>
+				<label>3 - Click in Play.</label></br>
+				<label>4 - Enjoy your puzzle.</label></br>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<canvas id="canvas" class="game-canvas" 
+			        style="border: 1px solid black; border-radius: 10px; width: 100%; min-height: 690px; background-color: rgb(250, 250, 250);" />
+		</div>
+	</div>
   </body>
 </html>

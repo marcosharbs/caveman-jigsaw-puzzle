@@ -8,10 +8,6 @@ var SOCKET_LEFT      = "leftSocket";
 var SOCKET_RIGHT     = "rightSocket";
 var SOCKET_TOP       = "topSocket";
 var SOCKET_BOTTOM    = "bottomSocket";
-var COLUMNS_ID       = "columns";
-var ROWS_ID          = "rows";
-var CANVAS_HEIGHT_ID = "canvasHeight";
-var CANVAS_WIDTH_ID  = "canvasWidth";
 var CRUVE_SIZE       = 1.1;
 var BORDER_COLOR     = "gray";
 var BORDER_WIDTH     = 6;
@@ -23,6 +19,7 @@ var currentSocketsCount = 0;
 var pieces              = null;
 var colums              = 0;
 var rows                = 0;
+var paperSetup          = false;
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -67,8 +64,10 @@ function createSockets(pieceObj, socket, otherPiece, otherSocket, hw1, hh1, hw2,
 }
 
 function createPieces(canvas, imgData){
-	columns = document.getElementById(COLUMNS_ID).value;
-    rows = document.getElementById(ROWS_ID).value;
+	var cr = $("#levelCombo option:selected").val().split("-");
+
+	columns = cr[0];
+    rows = cr[1];
 
     socketsCount = 0;
     currentSocketsCount = 0;
@@ -78,8 +77,8 @@ function createPieces(canvas, imgData){
 
     if(originalRaster.size.width > canvas.width){
         var wRatio = canvas.width / originalRaster.size.width;
-        originalRaster.size.width = originalRaster.size.width * wRatio; 
-        originalRaster.size.height = originalRaster.size.height * wRatio; 
+        originalRaster.size.width = (originalRaster.size.width * wRatio) * 0.75; 
+        originalRaster.size.height = (originalRaster.size.height * wRatio) * 0.75; 
     }
     if(originalRaster.size.height > canvas.height){
         var hRatio = canvas.height / originalRaster.size.height;
@@ -210,7 +209,12 @@ function createPieces(canvas, imgData){
 function createPuzzle(imgData){
     var canvas = document.getElementById(CANVAS_ID);
 
-    paper.setup(canvas);
+	if(paperSetup == false){
+		paperSetup = true;
+		paper.setup(canvas);
+	}else{
+		paper.project.clear();
+	}
 
 	layer = new Layer().initialize();
 
@@ -240,31 +244,16 @@ function createPuzzle(imgData){
     ComponentUtils.addComponent(Game, new PaperJsRenderComponent().initialize());
 }
 
-function handleImageSelect(evt) {
+function onPlayPuzzle() {
 	var file = document.getElementById(UPLOAD_ID).files[0];
 	
 	var reader  = new FileReader();
 
 	reader.onloadend = function () {
 		createPuzzle(reader.result);
-        document.getElementById(COLUMNS_ID).disabled       = true;
-        document.getElementById(ROWS_ID).disabled          = true;
-        document.getElementById(CANVAS_WIDTH_ID).disabled  = true;
-        document.getElementById(CANVAS_HEIGHT_ID).disabled = true;
-        document.getElementById(UPLOAD_ID).disabled        = true;
   	}
 
   	if (file) {
     	reader.readAsDataURL(file);
   	}
-}
-
-window.onload = function(){
-	document.getElementById(UPLOAD_ID).addEventListener('change', handleImageSelect, false);
-    var w = screen.width - 50;
-    var h = screen.height - 250;
-    document.getElementById(CANVAS_ID).width = w;
-    document.getElementById(CANVAS_ID).height = h;
-    document.getElementById(CANVAS_WIDTH_ID).value = w;
-    document.getElementById(CANVAS_HEIGHT_ID).value = h;
 }
