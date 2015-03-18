@@ -262,6 +262,13 @@ function onPlayPuzzle() {
   	}
 }
 
+function onPlayPuzzleSample(idImage) {
+	$('#waitingDialog').modal('show');
+	var myImage = new Image();
+	myImage.src = $("#"+idImage).attr("src");
+	createPuzzle(myImage);
+}
+
 $(document).ready(function() { 
 	$("#canvas").css("height", screen.availHeight - 200);
 	$("#config").css("height", screen.availHeight - 200);
