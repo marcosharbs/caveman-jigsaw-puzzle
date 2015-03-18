@@ -242,9 +242,13 @@ function createPuzzle(imgData){
     RenderSystem.clearCanvas = false;
 
     ComponentUtils.addComponent(Game, new PaperJsRenderComponent().initialize());
+	
+	$('#waitingDialog').modal('hide')
 }
 
 function onPlayPuzzle() {
+	$('#waitingDialog').modal('show')
+		
 	var file = document.getElementById(UPLOAD_ID).files[0];
 	
 	var reader  = new FileReader();
@@ -257,3 +261,8 @@ function onPlayPuzzle() {
     	reader.readAsDataURL(file);
   	}
 }
+
+$(document).ready(function() { 
+	$("#canvas").css("height", screen.availHeight - 200);
+	$("#config").css("height", screen.availHeight - 200);
+});
