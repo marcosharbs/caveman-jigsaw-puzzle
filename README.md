@@ -1,4 +1,4 @@
 # Caveman Jigsaw Puzzle
 
-Visit </br>
+Visit
 http://caveman-jigsaw-puzzle.herokuapp.com/
